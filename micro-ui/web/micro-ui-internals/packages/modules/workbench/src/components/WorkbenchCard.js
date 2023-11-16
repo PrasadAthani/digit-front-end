@@ -3,7 +3,7 @@ import React from "react";
 import { useTranslation } from "react-i18next";
 
 const ROLES = {
-  LOCALISATION: ["EMPLOYEE", "SUPERUSER","EMPLOYEE_COMMON","LOC_ADMIN"],
+  LOCALISATION: ["EMPLOYEE", "SUPERUSER", "EMPLOYEE_COMMON", "LOC_ADMIN"],
   MDMS: ["MDMS_ADMIN", "EMPLOYEE", "SUPERUSER"],
   DSS: ["STADMIN"],
 };
@@ -21,6 +21,16 @@ const WorkbenchCard = () => {
     {
       label: t("ACTION_TEST_MDMS"),
       link: `/${window?.contextPath}/employee/workbench/manage-master-data`,
+      roles: ROLES.MDMS,
+    },
+    {
+      label: t("Create Schema"),
+      link: `/${window?.contextPath}/employee/workbench/create-schema`,
+      roles: ROLES.MDMS,
+    },
+    {
+      label: t("Edit Schema"),
+      link: `/${window?.contextPath}/employee/workbench/edit-schema`,
       roles: ROLES.MDMS,
     },
     {
