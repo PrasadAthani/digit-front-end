@@ -447,6 +447,21 @@ export const UICustomizations = {
       data.body.MdmsCriteria.filters = filters
       data.body.MdmsCriteria.schemaCode = additionalDetails?.currentSchemaCode
       delete data.body.MdmsCriteria.custom
+      if (additionalDetails.searchBySchema) {
+        const filters = {};
+        const searchForm = data.state.searchForm;
+        Object.keys(searchForm).forEach((key) => {
+          if (searchForm[key] && Object.keys(searchForm[key]).includes("value")) {
+            if (searchForm[key].value == false || searchForm[key].value == true) {
+              data.body.MdmsCriteria[key] = searchForm[key].value;
+            }
+          }
+          else if (searchForm[key]) {
+            filters[key] = searchForm[key];
+          }
+        });
+        data.body.MdmsCriteria.filters = filters;
+      }
       // const {field,value} = data.body.MdmsCriteria.moduleDetails[0].masterDetails[0].custom || {}
 
       // const tenantId = Digit.ULBService.getCurrentTenantId()
@@ -589,7 +604,7 @@ export const UICustomizations = {
       // const tenantId = Digit.ULBService.getCurrentTenantId()
       // data.body.MdmsCriteria.tenantId = tenantId
 
-      // //generate filter 
+      // //generate filter
       // const filter = `[?(@.${field?.code}=='${value}')]`
 
 
