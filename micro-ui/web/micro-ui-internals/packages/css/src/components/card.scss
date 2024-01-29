@@ -275,6 +275,7 @@
           margin-right: unset;
         }
       }
+
     }
 
     .field-container {
@@ -332,6 +333,16 @@
   .button-sub-text {
     width: 240px;
   }
+}
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .label-field-pair
+   {
+    display:flex;
+    flex-direction :column;
+  }
+}
+
+
   .home-page-info-banner-wrap {
     max-width: 45%;
     min-width: 40%;
@@ -347,7 +358,7 @@
     max-width: 100%;
     padding: 0px 10px;
   }
-}
+
 
 .card-label-error {
   @apply block text-body-s text-error mb-md;
