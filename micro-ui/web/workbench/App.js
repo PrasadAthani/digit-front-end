@@ -5,6 +5,7 @@ import { DigitUI } from "@egovernments/digit-ui-module-core";
 import { UICustomizations } from "./Customisations/UICustomizations";
 import { initWorkbenchComponents } from "@egovernments/digit-ui-module-workbench";
 import { initUtilitiesComponents } from "@egovernments/digit-ui-module-utilities";
+import { initWorkbenchHCMComponents } from "@egovernments/digit-ui-module-hcmworkbench";
 
 window.contextPath = window?.globalConfigs?.getConfig("CONTEXT_PATH");
 
@@ -15,6 +16,7 @@ const enabledModules = [
   // "HRMS",
   "Engagement",
   "Workbench",
+  "HCMWORKBENCH"
 ];
 
 const moduleReducers = (initData) => ({
@@ -27,8 +29,10 @@ const initDigitUI = () => {
     PGR: {},
     commonUiConfig: UICustomizations,
   };
+  // initHRMSComponents();
   initUtilitiesComponents();
   initWorkbenchComponents();
+  initWorkbenchHCMComponents();
 };
 
 initLibraries().then(() => {
