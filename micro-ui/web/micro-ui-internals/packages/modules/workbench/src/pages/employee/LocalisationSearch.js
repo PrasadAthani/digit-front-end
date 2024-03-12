@@ -9,15 +9,15 @@ import { useQueryClient } from "react-query";
 
 const LocalisationSearch = () => {
   const { t } = useTranslation();
-  const queryClient = useQueryClient()
+  const queryClient = useQueryClient();
   const history = useHistory();
   const tenantId = Digit.ULBService.getCurrentTenantId();
   const [showToast, setShowToast] = useState(false);
   const [modalConfig, setModalConfig] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [editRow,setEditRow] = useState(null)
-  const [formData,setFormData] = useState(null)
-  const [callRefetch,setCallRefetch] = useState(false)
+  const [editRow, setEditRow] = useState(null);
+  const [formData, setFormData] = useState(null);
+  const [callRefetch, setCallRefetch] = useState(false);
   const reqCriteriaAdd = {
     url: `/localization/messages/v1/_upsert`,
     params: {},
@@ -38,44 +38,48 @@ const LocalisationSearch = () => {
   };
 
   const formUpdate = (form) => {
-    setFormData(form)
-  }
+    console.log("form->>>>>", form);
+    setFormData(form);
+  };
 
   const onModalSubmit = async (payload) => {
-    if(!payload?.message){
-      setShowToast({ label: `${t("WBH_LOC_ENTER_VALID_MESSAGE")}`,isError: true,style:{
-        zIndex:"10000"
-      } });
-      closeToast()
-      return
+    if (!payload?.message) {
+      setShowToast({
+        label: `${t("WBH_LOC_ENTER_VALID_MESSAGE")}`,
+        isError: true,
+        style: {
+          zIndex: "10000",
+        },
+      });
+      closeToast();
+      return;
     }
     const onSuccess = (resp) => {
       setShowToast({ label: `${t("WBH_LOC_UPDATE_SUCCESS")}` });
-      setShowModal(null)
-      setEditRow(null)
-      setModalConfig(null)
+      setShowModal(null);
+      setEditRow(null);
+      setModalConfig(null);
       // const queryCache = queryClient.getQueryCache()
       // const queryKeys = queryCache.getAll().map(cache => cache.queryKey) // QueryKey[]
       // queryClient.invalidateQueries([`/localization/messages/v1/_upsert`,`Random`])
       // queryClient.invalidateQueries([`/localization/messages/v1/_upsert`,`Random`,`defaultLocale`])
       closeToast();
-      setCallRefetch(true)
+      setCallRefetch(true);
     };
     const onError = (resp) => {
-      let label = `${t("WBH_LOC_UPDATE_FAIL")}: `
-      resp?.response?.data?.Errors?.map((err,idx) => {
-        if(idx===resp?.response?.data?.Errors?.length-1){
-          label = label + t(Digit.Utils.locale.getTransformedLocale(err?.code)) + '.'
-        }else{
-        label = label + t(Digit.Utils.locale.getTransformedLocale(err?.code)) + ', '
+      let label = `${t("WBH_LOC_UPDATE_FAIL")}: `;
+      resp?.response?.data?.Errors?.map((err, idx) => {
+        if (idx === resp?.response?.data?.Errors?.length - 1) {
+          label = label + t(Digit.Utils.locale.getTransformedLocale(err?.code)) + ".";
+        } else {
+          label = label + t(Digit.Utils.locale.getTransformedLocale(err?.code)) + ", ";
         }
-      })
+      });
       setShowToast({ label, isError: true });
-      setShowModal(null)
-      setEditRow(null)
+      setShowModal(null);
+      setEditRow(null);
       closeToast();
     };
-
 
     mutation.mutate(
       {
@@ -90,21 +94,20 @@ const LocalisationSearch = () => {
         onSuccess,
       }
     );
-
-  }
+  };
 
   const onClickSvg = (row) => {
-    setEditRow(row.original)
-    setShowModal(true)
-  }
-  
+    setEditRow(row.original);
+    setShowModal(true);
+  };
+
   useEffect(() => {
-    if(editRow) {
+    if (editRow) {
       setModalConfig(
         getEditModalConfig({
           t,
           editRow,
-          formData
+          formData,
         })
       );
     }
@@ -113,8 +116,8 @@ const LocalisationSearch = () => {
   return (
     <React.Fragment>
       <div className="jk-header-btn-wrapper">
-      <Header className="works-header-search">{t(Config?.label)}</Header>
-      {/* {Config && Digit.Utils.didEmployeeHasRole(Config?.actionRole) && (
+        <Header className="works-header-search">{t(Config?.label)}</Header>
+        {/* {Config && Digit.Utils.didEmployeeHasRole(Config?.actionRole) && (
           <Button
             label={t(Config?.actionLabel)}
             variation="secondary"
