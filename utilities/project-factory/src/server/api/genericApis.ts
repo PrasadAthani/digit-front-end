@@ -61,11 +61,7 @@ function getJsonData(sheetData: any, getRow = false, getSheetName = false, sheet
 }
 
 function validateFirstRowColumn(createAndSearchConfig: any, worksheet: any, localizationMap: any) {
-  if (
-    createAndSearchConfig &&
-    createAndSearchConfig.parseArrayConfig &&
-    createAndSearchConfig.parseArrayConfig.parseLogic
-  ) {
+  if (createAndSearchConfig?.parseArrayConfig?.parseLogic) {
     const parseLogic = createAndSearchConfig.parseArrayConfig.parseLogic;
     // Iterate over each column configuration
     for (const columnConfig of parseLogic) {
@@ -1205,9 +1201,12 @@ async function callMdmsTypeSchema(
   request: any,
   tenantId: string,
   type: any,
-  campaignType = "all"
+  campaignType: string = "all",
+  additionalParam?: string
 ) {
   const { RequestInfo = {} } = request?.body || {};
+  const schemaCode = additionalParam && additionalParam.trim() !== "" ? additionalParam : "HCM-ADMIN-CONSOLE.adminSchema";
+
   const requestBody = {
     RequestInfo,
     MdmsCriteria: {
@@ -1215,7 +1214,7 @@ async function callMdmsTypeSchema(
       uniqueIdentifiers: [
         `${type}.${campaignType}`
       ],
-      schemaCode: "HCM-ADMIN-CONSOLE.adminSchema"
+      schemaCode: schemaCode
     }
   };
   const url = config.host.mdmsV2 + config.paths.mdms_v2_search;
