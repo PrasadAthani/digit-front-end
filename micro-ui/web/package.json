@@ -91,3 +91,7 @@
     ]
   }
 }
+
+"proxy": {
+  "target": "http://localhost:5200"  // Adjust the target as needed
+}
