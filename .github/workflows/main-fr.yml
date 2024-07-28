@@ -21,5 +21,4 @@ jobs:
       - name: Generate React Build
         run: |
          yarn --cwd /home/runner/work/digit-front-end/digit-front-end/micro-ui/web install
-         yarn install
-         yarn start
+         yarn --cwd /home/runner/work/digit-front-end/digit-front-end/micro-ui/web start
