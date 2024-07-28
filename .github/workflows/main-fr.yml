@@ -1,0 +1,23 @@
+name: Deploy to DEV
+on: 
+  push: 
+    branches:
+      - master
+jobs:
+  build:
+    name: Generate Build and Deploy to DEV
+   # environment: PROD
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node Env
+        uses: actions/setup-node@v3
+        with:
+          node-version: 21.1.0
+   
+      - name: Generate React Build
+        run: |
+         yarn install
+         yarn start
