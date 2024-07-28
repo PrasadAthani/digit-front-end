@@ -22,5 +22,6 @@ jobs:
         run: |
          yarn add @egovernments/digit-ui-libraries
          yarn add @egovernments/digit-ui-module-common
+         yarn add @egovernments/digit-ui-module-core
          yarn --cwd /home/runner/work/digit-front-end/digit-front-end/micro-ui/web install
-         yarn --cwd /home/runner/work/digit-front-end/digit-front-end/micro-ui/web build
+         yarn --cwd /home/runner/work/digit-front-end/digit-front-end/micro-ui/web start
