@@ -65,8 +65,8 @@
     "fast-uri":"2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "GENERATE_SOURCEMAP=false SKIP_PREFLIGHT_CHECK=true react-scripts build",
+    "start": "NODE_OPTIONS=--openssl-legacy-provider react-scripts start",
+    "build": "NODE_OPTIONS=--openssl-legacy-provider GENERATE_SOURCEMAP=false SKIP_PREFLIGHT_CHECK=true react-scripts build",
     "build:prepare": "./build.sh",
     "build:libraries": "cd micro-ui-internals && yarn build",
     "build:prod": "webpack --mode production",
