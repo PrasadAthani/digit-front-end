@@ -20,6 +20,6 @@ jobs:
 
       - name: Generate React Build
         run: |
-         yarn --cwd digit-front-end/micro-ui/web 
+         yarn --cwd /micro-ui/web 
          yarn install
          yarn start
