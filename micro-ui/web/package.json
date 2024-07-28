@@ -90,7 +90,5 @@
       "last 1 safari version"
     ]
   },
-"proxy": {
-  "target": "http://localhost:5200" 
-}
+"proxy": "http://localhost:5200" 
 }
