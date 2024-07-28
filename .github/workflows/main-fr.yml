@@ -16,8 +16,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 21.1.0
-   
+
+
       - name: Generate React Build
         run: |
+         yarn --cwd digit-front-end/micro-ui/web 
          yarn install
          yarn start
