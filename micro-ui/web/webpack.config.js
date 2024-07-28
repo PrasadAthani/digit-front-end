@@ -42,3 +42,19 @@ module.exports = {
     new HtmlWebpackPlugin({ inject: true, template: "public/index.html" }),
   ],
 };
+
+
+
+// webpack.config.js
+module.exports = {
+  // ...other configurations
+  devServer: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5200',
+        pathRewrite: {'^/api' : ''},
+        changeOrigin: true,
+      },
+    },
+  },
+};
