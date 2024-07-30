@@ -6,7 +6,7 @@ on:
       - 'health/micro-ui/web/micro-ui-internals/**'
   workflow_dispatch:
 jobs:
-  docker_image-build:
+  docker_image-build: 
     outputs:
       run_job_digit_ui: ${{ steps.check_files.outputs.run_job_digit_ui }}
     runs-on: ubuntu-latest
