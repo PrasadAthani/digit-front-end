@@ -41,8 +41,10 @@ jobs:
           echo "BRANCH_NAME=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
 
 
-
-
+      - name: Build and Push Docker image for digit-ui
+        run: |
+          docker build -t workbench-u -f  /home/runner/work/digit-front-end/digit-front-end/micro-ui/web/workbench/Dockerfile .
+      
       - name: Login to egovio docker Container Registry
         env:
             DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
